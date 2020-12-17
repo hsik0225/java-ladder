@@ -27,4 +27,19 @@ public class NumberValidatorTest {
         assertThatThrownBy(callable).isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NumberValidator.NOT_NUMBER_ERROR);
     }
+
+    @Test
+    @DisplayName("최소 사다리 높이보다 작을 경우 예외 발생")
+    public void validate_LessThanMinimumLadderSize_ExceptionThrown() {
+
+        // given
+        String input = "0";
+
+        // when
+        ThrowableAssert.ThrowingCallable callable = () -> validator.validate(input);
+
+        //then
+        assertThatThrownBy(callable).isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NumberValidator.TOO_LESS_LADDER_SIZE);
+    }
 }
